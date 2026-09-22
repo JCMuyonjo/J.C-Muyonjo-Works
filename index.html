@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>J.C Muyonjo — Creative Technologist & AV Artist</title>
+
+  <!-- BROWSER FAVICON / TAB LOGO ICON -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+  <style>
+    :root {
+      --bg: #0d0d0e;
+      --card-bg: #141416;
+      --card-hover: #1b1b1e;
+      --text: #ececee;
+      --muted: #8e8e93;
+      --accent: #ffffff;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(255, 255, 255, 0.2);
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      padding: 0 2rem;
+      max-width: 1040px;
+      margin: 0 auto;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER & BRANDING */
+    header {
+      padding: 4rem 0 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .brand-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 0.4rem;
+    }
+
+    /* NAVIGATION */
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding-bottom: 0.25rem;
+      transition: color 0.2s, border-color 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav button:hover {
+      color: var(--text);
+    }
+
+    nav button.active {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* HEADER BANNER IMAGE */
+    .hero-banner-container {
+      width: 100%;
+      aspect-ratio: 3 / 1;
+      max-height: 350px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-top: 2rem;
+      margin-bottom: 2.5rem;
+      overflow: hidden;
+    }
+
+    .hero-banner-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* TAB CONTENT */
+    .tab-content {
+      display: none;
+      padding: 3.5rem 0;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* HERO STATEMENT */
+    .hero-bio {
+      font-size: 1.35rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 880px;
+      margin-bottom: 3.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-bio span {
+      color: var(--muted);
+    }
+
+    /* GRID & CARDS */
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 700px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s, transform 0.2s, background-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--border-accent);
+      background: var(--card-hover);
+      transform: translateY(-2px);
+    }
+
+    /* UNIFORM 16:9 CARD THUMBNAILS */
+    .card-media-container {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .card-media-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .card-body {
+      font-size: 0.95rem;
+      color: #c5c5cb;
+      margin-bottom: 1.75rem;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    /* BUTTONS & LINKS */
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--accent);
+      padding: 0.7rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+      width: fit-content;
+    }
+
+    .btn-link:hover {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    /* LIST STYLE */
+    .clean-list {
+      list-style: none;
+    }
+
+    .clean-list li {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+      gap: 1rem;
+    }
+
+    .clean-list li span:first-child { color: var(--text); font-weight: 500; }
+    .clean-list li span:last-child { color: var(--muted); font-size: 0.9rem; }
+
+    /* SKILLS GRID */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 650px) {
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      border-radius: 10px;
+    }
+
+    .skill-card h3 {
+      font-size: 1.05rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .skill-card ul {
+      list-style: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .skill-card li {
+      margin-bottom: 0.6rem;
+      position: relative;
+      padding-left: 1.2rem;
+    }
+
+    .skill-card li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer { padding: 4rem 0 3rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--muted); text-align: center; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-top">
+      <div class="brand">
+        <div class="brand-title">J.C Muyonjo</div>
+        <div class="brand-subtitle">Creative Technologist • Sound & Visual Artist</div>
+      </div>
+      <nav>
+        <button class="nav-btn active" onclick="openTab(event, 'home')">Home</button>
+        <button class="nav-btn" onclick="openTab(event, 'works')">Audio-Visual</button>
+        <button class="nav-btn" onclick="openTab(event, 'exhibitions')">Exhibitions & Awards</button>
+        <button class="nav-btn" onclick="openTab(event, 'discography')">Music Discography</button>
+        <button class="nav-btn" onclick="openTab(event, 'pipeline')">In The Pipeline</button>
+        <button class="nav-btn" onclick="openTab(event, 'about')">About</button>
+        <button class="nav-btn" onclick="openTab(event, 'contact')">Contact</button>
+      </nav>
+    </div>
+
+    <!-- HEADER IMAGE BANNER -->
+    <div class="hero-banner-container">
+      <img src="header-banner.jpg" alt="J.C Muyonjo Portfolio Header Banner">
+    </div>
+  </header>
+
+  <!-- HOME SECTION -->
+  <section id="home" class="tab-content active">
+    <p class="hero-bio">
+      I live at the meeting point of sound, image, and interactive experience. <span>My work spans visual communication, sound design, and digital illustration—building audio-visual worlds that move, react, and feel alive.</span>
+    </p>
+
+    <div class="card" style="margin-bottom: 3rem;">
+      <div class="card-media-container">
+        <img src="hero-reel.jpg" alt="Featured Visual Reel - Abatuuze Album">
+      </div>
+      <div>
+        <h3 class="card-title">Abatuuze Audio Visual Album</h3>
+        <p class="card-meta">Audio-Reactive Visuals & Collaborative Performance</p>
+        <p class="card-body">
+          "Abatuuze" translates to "inhabitants of the land." This project features Ugandan spoken word artists and a Gambian Kora player, paired with generative visual art responding dynamically to live sound frequencies.
+        </p>
+      </div>
+      <a href="https://www.youtube.com/playlist?list=PLxvWNq2LTJl7JQ5pH5z5wUr8b3x3RzUeG" target="_blank" class="btn-link">View Playlist &rarr;</a>
+    </div>
+  </section>
+
+  <!-- AUDIO-VISUAL WORKS -->
+  <section id="works" class="tab-content">
+    <h2 class="section-title">Selected Audio-Visual & Virtual Reality Works</h2>
+    
+    <div class="grid">
+      
+      <!-- ABATUUZE VR -->
+      <div class="card">
+        <div class="card-media-container">
+          <img src="abatuuze-vr.jpg" alt="Abatuuze VR Experience Preview">
+        </div>
+        <div>
+          <h3 class="card-title">Abatuuze VR Experience</h3>
+          <p class="card-meta">With Migisha Boyd (Game Programmer & Scientist)</p>
+          <p class="card-body">A virtual environment featuring custom motion graphics and narrated poetry. Accessible via Meta Quest headsets or video walkthrough.</p>
+        </div>
+        <a href="https://mega.nz/folder/oFsTVZBL#9A4M_DyYtCvWgWbVKLCABw" target="_blank" class="btn-link">VR Download & Walkthrough &rarr;</a>
+      </div>
+
+      <!-- ABATUUZE 360 VISUALIZER -->
+      <div class="card">
+        <div class="card-media-container">
+          <img src="abatuuze-360.jpg" alt="Abatuuze 360 Visualizer Artwork">
+        </div>
+        <div>
+          <h3 class="card-title">Abatuuze 360° Visualizers</h3>
+          <p class="card-meta">Generative AI & Skybox</p>
+          <p class="card-body">360° generative hybrid visuals crafted using original artwork as references for standalone instrumental releases.</p>
+        </div>
+        <a href="https://youtube.com/playlist?list=PLxvWNq2LTJl7GLap02weOcpf7jRcy51kQ&si=JEycEPHWdyjkKGNG" target="_blank" class="btn-link">Watch 360° Visualizer &rarr;</a>
+      </div>
+
+      <!-- MY CAMPUS -->
+      <div class="card">
+        <div class="card-media-container">
+          <img src="my-campus.jpg" alt="My Campus Soundscape Visual Artwork">
+        </div>
+        <div>
+          <h3 class="card-title">“My Campus” Soundscape</h3>
+          <p class="card-meta">Commissioned by Aalto University</p>
+          <p class="card-body">Surreal simulation of pixel sound particle displacement mapped to university photography. Soundscape by Kiss Bálint.</p>
+        </div>
+        <a href="https://youtu.be/B4s-MH2g9O8?si=0S4bYDPSczedZyF_" target="_blank" class="btn-link">Watch Artwork &rarr;</a>
+      </div>
+
+      <!-- METAMORPHOSIS -->
+      <div class="card">
+        <div class="card-media-container">
+          <img src="metamorphosis.jpg" alt="Metamorphosis Audio Reactive Piece">
+        </div>
+        <div>
+          <h3 class="card-title">“Metamorphosis”</h3>
+          <p class="card-meta">Conservatorio di musica in Foggia / PAYSAGES 2025</p>
+          <p class="card-body">Audio-reactive visual piece created with Serena Criss. Selected for PAYSAGES | COMPOSÉS 2025 screening in France.</p>
+        </div>
+        <a href="https://youtu.be/PsbZaH5mgug?si=2x-D7nZJChjnZhw4" target="_blank" class="btn-link">Watch Video &rarr;</a>
+      </div>
+
+      <!-- POLITRICKING -->
+      <div class="card">
+        <div class="card-media-container">
+          <img src="politricking.jpg" alt="Politricking 360 Artwork Canvas">
+        </div>
+        <div>
+          <h3 class="card-title">“Politricking” 360° VR</h3>
+          <p class="card-meta">Social Commentary & Virtual Art</p>
+          <p class="card-body">Interactive 360° canvas examining political deception, created in collaboration with visual artist Migisha Boyd.</p>
+        </div>
+        <a href="https://youtu.be/m9Y7SVvd48E?si=1lrvkCNMKrMSYeFc" target="_blank" class="btn-link">Interact with Canvas &rarr;</a>
+      </div>
+
+      <!-- SOUND DESIGN (BEHANCE) -->
+      <div class="card">
+        <div class="card-media-container">
+          <img src="behance-sound.jpg" alt="Sound Design Portfolio Cover">
+        </div>
+        <div>
+          <h3 class="card-title">Sound Design Portfolio</h3>
+          <p class="card-meta">Commercial & Visual Compositions</p>
+          <p class="card-body">Curated selection of original sound design and musical compositions engineered for digital media.</p>
+        </div>
+        <a href="https://www.behance.net/gallery/134118967/Sound-Design-music-compositions-for-visuals" target="_blank" class="btn-link">View Portfolio &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXHIBITIONS & AWARDS SECTION -->
+  <section id="exhibitions" class="tab-content">
+    <h2 class="section-title">Selected Exhibitions</h2>
+    <ul class="clean-list" style="margin-bottom: 3.5rem;">
+      <li><span>Fest Afrika Tampere</span> <a href="https://www.festafrika.net/artistit/" target="_blank">Nekalab (August 2026) &rarr;</a></li>
+      <li><span>AX Hotel Exhibition</span> <span>Helsinki (July 2026)</span></li>
+      <li><span>Aalto University Demo-Day</span> <span>Finland (June 2023 & June 2026)</span></li>
+      <li><span>Myymälä2 Gallery Exhibition</span> <a href="https://www.myymala2.com/?p=10624" target="_blank">Helsinki (May 2026) &rarr;</a></li>
+    </ul>
+
+    <h2 class="section-title">Awards, Grants & Fellowships</h2>
+    <ul class="clean-list">
+      <li><span>Africa No Filter — Kekere Storyteller's Fund</span> <span>Grantee (2024 & 2025)</span></li>
+      <li><span>Folger Shakespeare Library Artistic Research Fellowship</span> <span>Washington D.C. (2024)</span></li>
+      <li><span>Finland Scholarship</span> <span>Aalto University (2022)</span></li>
+      <li><span>Africalia Creative Residency Grant</span> <span>International Residency (2020)</span></li>
+    </ul>
+  </section>
+
+  <!-- MUSIC DISCOGRAPHY & PRESS -->
+  <section id="discography" class="tab-content">
+    <h2 class="section-title">Music Discography</h2>
+    <p style="color: var(--muted); margin-bottom: 2rem; max-width: 700px;">
+      Over a decade of music production across 4 EPs and 3 albums. Live performances include Bayimba International Festival, Blankets and Wine, Fest Afrika, and G-Live Lab Helsinki.
+    </p>
+
+    <div style="margin-bottom: 3rem;">
+      <a href="https://linktr.ee" target="_blank" class="btn-link">Listen on Spotify / Bandcamp / Apple Music &rarr;</a>
+    </div>
+
+    <h2 class="section-title">Press & Reviews</h2>
+    <ul class="clean-list">
+      <li><span>The East African — Afrosphere Fourth Album Review</span> <a href="https://www.theeastafrican.co.ke/tea/magazine/muyonjo-s-fourth-album-afrosphere-leans-toward-rap-3697422" target="_blank">Read &rarr;</a></li>
+      <li><span>Satisfashion UG — Interview on Afrosphere</span> <a href="https://satisfashionug.com/jc-muyonjo-talks-afrosphere-his-new-album-and-so-much-more/" target="_blank">Read &rarr;</a></li>
+      <li><span>The Observer — Watch Out For Muyonjo</span> <a href="https://observer.ug/lifestyle-entertainment/watch-out-for-muyonjo-this-year/" target="_blank">Read &rarr;</a></li>
+      <li><span>Mugibson — Afrosphere Feature Interview</span> <a href="https://mugibson.com/j-c-muyonjo-afrosphere-interview/" target="_blank">Read &rarr;</a></li>
+      <li><span>MTN Pulse — Kidandali EP Review</span> <a href="https://pulse.mtn.co.ug/pulse-music-review-kidandali-ep-by-jc-muyonjo/" target="_blank">Read &rarr;</a></li>
+    </ul>
+  </section>
+
+  <!-- IN THE PIPELINE -->
+  <section id="pipeline" class="tab-content">
+    <h2 class="section-title">Research & Projects In Development</h2>
+
+    <div class="grid">
+      <!-- AR UGANDAN SOUNDS -->
+      <div class="card">
+        <div class="card-media-container">
+          <img src="ar-ugandan-sounds.jpg" alt="AR Ugandan Sounds Digital Catalog">
+        </div>
+        <div>
+          <h3 class="card-title">AR Ugandan Sounds</h3>
+          <p class="card-meta">Augmented Reality & Digital Cataloging</p>
+          <p class="card-body">Preserving East African cultural heritage through interactive 3D augmented reality musical instruments—building complementary tools for museums and heritage preservation.</p>
+        </div>
+        <a href="#" target="_blank" class="btn-link">Read Research Thesis &rarr;</a>
+      </div>
+
+      <!-- RE-IMAGINING TWILIGHT -->
+      <div class="card">
+        <div class="card-media-container">
+          <img src="reimagining-twilight.jpg" alt="Re-Imagining Twilight Audio Visual Research">
+        </div>
+        <div>
+          <h3 class="card-title">Re-Imagining Twilight</h3>
+          <p class="card-meta">Folger Artistic Fellowship (Washington D.C.)</p>
+          <p class="card-body">Audio-visual project re-examining Ruth B. Fisher's 1911 work "Twilight Tales of the Black Baganda". Combining paintings, field recordings, and digital audio-reactive soundscapes to challenge biased historical narratives about Ugandan indigenous musical heritage.</p>
+        </div>
+        <a href="https://www.behance.net/gallery/249311759/Re-Imagining-Twilight-Narratives-of-Ugandan-Heritage" target="_blank" class="btn-link">View Project on Behance &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="tab-content">
+    <h2 class="section-title">Artist Statement</h2>
+    <p style="color: var(--muted); margin-bottom: 3rem; max-width: 800px; font-size: 1.05rem; line-height: 1.8;">
+      My background spans visual communication, sound design, and digital illustration, driven by curiosity and continuous discovery. Beyond conceptual projects, I work with commercial entities and cultural institutions as an illustrator, graphic designer, producer, and educator.
+    </p>
+
+    <h2 class="section-title">Education</h2>
+    <ul class="clean-list" style="margin-bottom: 3rem;">
+      <li><span>Aalto University (Finland)</span> <span>Master's in Art & Media (2022–2024)</span></li>
+      <li><span>Kyambogo University (Uganda)</span> <span>BA Industrial & Fine Arts (2010–2013)</span></li>
+    </ul>
+
+    <h2 class="section-title">Capabilities & Services</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Sound Design & Production</h3>
+        <ul>
+          <li>Songwriting & Compositions</li>
+          <li>Music Production (Ableton Live, Logic Pro, Reaper)</li>
+          <li>Sound Design for Interactive Media, Games & Video</li>
+          <li>Audio Editing, Mixing & Mastering</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <h3>Visual Design & Creative Coding</h3>
+        <ul>
+          <li>Extended Reality (XR / VR / AR)</li>
+          <li>Digital & Hand-Drawn Illustration</li>
+          <li>Node-Based Logic & Visual Programming (TouchDesigner)</li>
+          <li>Creative Coding (p5.js, Pure Data, SuperCollider)</li>
+          <li>UI/UX Design (Figma, Adobe CC)</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <h3>Creative Direction</h3>
+        <ul>
+          <li>Artistic Concept Development</li>
+          <li>Multidisciplinary Storytelling</li>
+          <li>Cultural Research & Consultation</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <h3>Education & Speaking</h3>
+        <ul>
+          <li>Masterclasses & Interactive Workshops</li>
+          <li>Arts Mentorship</li>
+          <li>Public Speaking (Music, Art & Tech)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="tab-content">
+    <h2 class="section-title">Get in Touch</h2>
+    <p style="color: var(--muted); margin-bottom: 2rem;">
+      Based in Helsinki, Finland. Available for international commissions, live performances, sound design, and artistic collaborations.
+    </p>
+
+    <ul class="clean-list">
+      <li><span>Email</span> <a href="mailto:muyonjojessy@outlook.com">muyonjojessy@outlook.com &rarr;</a></li>
+      <li><span>Behance</span> <a href="https://www.behance.net/gallery/134118967/Sound-Design-music-compositions-for-visuals" target="_blank">behance.net/jcmuyonjo &rarr;</a></li>
+      <li><span>YouTube</span> <a href="https://www.youtube.com/playlist?list=PLxvWNq2LTJl7JQ5pH5z5wUr8b3x3RzUeG" target="_blank">youtube.com/@jcmuyonjo &rarr;</a></li>
+      <li><span>Music Links</span> <a href="https://linktr.ee" target="_blank">linktr.ee/jcmuyonjo &rarr;</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2026 J.C Muyonjo. All rights reserved.
+  </footer>
+
+  <script>
+    function openTab(evt, tabName) {
+      const contents = document.getElementsByClassName("tab-content");
+      for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.remove("active");
+      }
+      const buttons = document.getElementsByClassName("nav-btn");
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active");
+      }
+      document.getElementById(tabName).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+  </script>
+</body>
+</html>
